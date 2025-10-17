@@ -1,0 +1,32 @@
+{
+  "name": "backend-wizards-profile-api",
+  "version": "1.0.0",
+  "description": "A dynamic profile endpoint that returns user information and cat facts",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "node test-api.js"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "nodejs",
+    "profile",
+    "backend"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.5.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
