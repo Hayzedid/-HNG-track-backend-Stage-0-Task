@@ -83,20 +83,6 @@ app.get('/me', async (req, res) => {
   }
 });
 
-// Root endpoint
-app.get('/', (req, res) => {
-  res.status(200).json({
-    status: "success",
-    message: "Backend Wizards Profile API",
-    version: "1.0.0",
-    endpoints: {
-      profile: "/me",
-      health: "/health"
-    },
-    timestamp: new Date().toISOString()
-  });
-});
-
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({
