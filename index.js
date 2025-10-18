@@ -83,6 +83,11 @@ app.get('/me', async (req, res) => {
   }
 });
 
+// Root endpoint - redirect to /me
+app.get('/', (req, res) => {
+  res.redirect('/me');
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({
