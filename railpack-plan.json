@@ -2,11 +2,12 @@
   "name": "backend-wizards-profile-api",
   "version": "1.0.0",
   "engines": {
-    "node": ">=14.0.0"
+    "node": "14.x",
+    "npm": "6.x"
   },
   "scripts": {
-    "build": "npm install",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "npm install"
   },
   "cacheDirectories": [
     "node_modules"
