@@ -4,7 +4,7 @@ const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -83,6 +83,20 @@ app.get('/me', async (req, res) => {
   }
 });
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Backend Wizards Profile API",
+    version: "1.0.0",
+    endpoints: {
+      profile: "/me",
+      health: "/health"
+    },
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({
@@ -94,10 +108,15 @@ app.get('/health', (req, res) => {
 
 // 404 handler
 app.use('*', (req, res) => {
+  console.log(`404 - Route not found: ${req.method} ${req.originalUrl}`);
   res.status(404).json({
     status: "error",
-    message: "Endpoint not found",
-    timestamp: new Date().toISOString()
+    message: `Endpoint not found: ${req.method} ${req.originalUrl}`,
+    timestamp: new Date().toISOString(),
+    availableEndpoints: [
+      "GET /me",
+      "GET /health"
+    ]
   });
 });
 
@@ -115,6 +134,7 @@ app.use((error, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Profile endpoint: http://localhost:${PORT}/me`);
+  console.log(`Health check: http://localhost:${PORT}/health`);
   console.log(`Started at: ${new Date().toISOString()}`);
 });
 
