@@ -1,0 +1,14 @@
+{
+  "name": "backend-wizards-profile-api",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "build": "npm ci",
+    "start": "node index.js"
+  },
+  "cacheDirectories": [
+    "node_modules"
+  ]
+}
