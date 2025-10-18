@@ -10,8 +10,8 @@ async function testAPI() {
     console.log('1. Testing GET /me endpoint...');
     const meResponse = await axios.get(`${BASE_URL}/me`);
     
-    console.log(`   ✅ Status: ${meResponse.status}`);
-    console.log(`   ✅ Content-Type: ${meResponse.headers['content-type']}`);
+    console.log(`  Status: ${meResponse.status}`);
+    console.log(`  Content-Type: ${meResponse.headers['content-type']}`);
     
     const data = meResponse.data;
     console.log('   📋 Response structure check:');
@@ -37,19 +37,13 @@ async function testAPI() {
     // Test health endpoint
     console.log('\n4. Testing GET /health endpoint...');
     const healthResponse = await axios.get(`${BASE_URL}/health`);
-    console.log(`   ✅ Status: ${healthResponse.status}`);
-    console.log(`   ✅ Response: ${JSON.stringify(healthResponse.data, null, 2)}`);
+    console.log(`  Status: ${healthResponse.status}`);
+    console.log(`  Response: ${JSON.stringify(healthResponse.data, null, 2)}`);
     
-    // Test root endpoint
-    console.log('\n5. Testing GET / endpoint...');
-    const rootResponse = await axios.get(`${BASE_URL}/`);
-    console.log(`   ✅ Status: ${rootResponse.status}`);
-    console.log(`   ✅ Response: ${JSON.stringify(rootResponse.data, null, 2)}`);
-    
-    console.log('\n🎉 All tests passed! Your API is ready for deployment.');
+    console.log('\n All tests passed! Your API is ready for deployment.');
     
   } catch (error) {
-    console.error('❌ Test failed:', error.message);
+    console.error(' Test failed:', error.message);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);

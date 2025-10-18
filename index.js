@@ -6,21 +6,17 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Logging middleware
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   next();
 });
 
-// Cat Facts API configuration
 const CAT_FACTS_API = 'https://catfact.ninja/fact';
-const API_TIMEOUT = 5000; // 5 seconds timeout
+const API_TIMEOUT = 5000; 
 
-// Helper function to fetch cat fact
 async function fetchCatFact() {
   try {
     const response = await axios.get(CAT_FACTS_API, {
@@ -52,28 +48,22 @@ async function fetchCatFact() {
 // Profile endpoint
 app.get('/me', async (req, res) => {
   try {
-    // Set response headers
+    
     res.setHeader('Content-Type', 'application/json');
-    
-    // Fetch cat fact
     const catFact = await fetchCatFact();
-    
-    // Generate current UTC timestamp in ISO 8601 format
     const timestamp = new Date().toISOString();
-    
-    // Response data - UPDATE THESE WITH YOUR ACTUAL INFORMATION
+
     const profileData = {
       status: "success",
       user: {
-        email: "your.email@example.com", // Replace with your actual email
-        name: "Your Full Name", // Replace with your actual name
-        stack: "Node.js/Express" // You can customize this
+        email: "iazeez775@gmail.com", 
+        name: "Idris Azeez", 
+        stack: "Node.js/Express" 
       },
       timestamp: timestamp,
       fact: catFact
     };
     
-    // Log the response for debugging
     console.log('Profile endpoint accessed:', {
       timestamp,
       factLength: catFact.length,
@@ -96,21 +86,8 @@ app.get('/me', async (req, res) => {
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({
-    status: "healthy",
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime()
-  });
-});
-
-// Root endpoint
-app.get('/', (req, res) => {
-  res.status(200).json({
-    message: "Backend Wizards Profile API",
-    version: "1.0.0",
-    endpoints: {
-      profile: "/me",
-      health: "/health"
-    },
+    status: "success",
+    message: "API is healthy",
     timestamp: new Date().toISOString()
   });
 });
@@ -136,10 +113,9 @@ app.use((error, req, res, next) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📍 Profile endpoint: http://localhost:${PORT}/me`);
-  console.log(`🏥 Health check: http://localhost:${PORT}/health`);
-  console.log(`⏰ Started at: ${new Date().toISOString()}`);
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Profile endpoint: http://localhost:${PORT}/me`);
+  console.log(`Started at: ${new Date().toISOString()}`);
 });
 
 module.exports = app;
