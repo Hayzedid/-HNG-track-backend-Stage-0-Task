@@ -2,13 +2,18 @@
   "name": "backend-wizards-profile-api",
   "version": "1.0.0",
   "engines": {
-    "node": ">=14.0.0"
+    "node": "14.21.3",
+    "npm": "6.14.18"
   },
   "scripts": {
-    "build": "npm ci",
+    "preinstall": "npx npm-force-resolutions",
+    "build": "npm install --production=false",
     "start": "node index.js"
   },
   "cacheDirectories": [
     "node_modules"
-  ]
+  ],
+  "installConfig": {
+    "pnp": false
+  }
 }
